@@ -1,9 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
-import Button from "./atoms/Button";
-import SelectWithErrorCustomSelect from "./atoms/Select";
+import Button from "./Button";
+import SelectWithErrorCustomSelect from "./Select";
 const BASE_URL = "https://api.bookme.rw/api/v1";
 
 const CreatePayMentSession = async ({ amountToPay }) => {
@@ -29,18 +29,15 @@ const CreatePayMentSession = async ({ amountToPay }) => {
   return payment;
 };
 
-const PaymentForm = ({ amountToPay, bookingID }) => {
+const PaymentForm = ({ amountToPay, bookingID, bookingEmail }) => {
   let Checkout;
-  console.log('amount to pay', amountToPay);
-  console.log('amount to pay', bookingID);
-
-  useEffect(() => {
     if (typeof window !== "undefined") {
       // @ts-ignore
       Checkout = window.Checkout;
     }
-  }, []);
 
+
+  
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
 
   const paymentMethods = [
@@ -84,12 +81,12 @@ const PaymentForm = ({ amountToPay, bookingID }) => {
       console.log(data);
       const uid = Math.abs(new Date().valueOf());
       localStorage.setItem("bookingID", bookingID);
+      localStorage.setItem("bookingEmail", bookingEmail);
       console.log(data.sessionId, uid);
       pay(data.sessionId, uid);
     },
     onError(error) {
-      console.log('Errorrrr=========================', error);
-      toast.error("An error occurred during payment session.");
+      toast.error(error.message ?? "An error occurred during payment session.");
     },
     mutationFn: () => CreatePayMentSession({ amountToPay }),
   });
@@ -97,14 +94,14 @@ const PaymentForm = ({ amountToPay, bookingID }) => {
   return (
     <>
       {/* load mastercard payment javascript */}
-      <script
+      {/* <script
         src="https://ap-gateway.mastercard.com/checkout/version/61/checkout.js"
         data-error="errorCallback"
         data-cancel="cancelCallback"
         data-complete="completeCallback"
       />
 
-      <script src="/public/script.js" />
+      <script src="/public/script.js" /> */}
 
       <div className="flex flex-col gap-2">
         <p className="text-co-black font-bold text-base">

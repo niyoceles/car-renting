@@ -67,10 +67,11 @@ export default function Informing() {
 							fontSize: 38,
 							fontWeight: 900,
 							color: 'white',
+							padding:'10px',
 							borderRadius: 25,
 						}}
 					>
-						Rent a your choose car with us!
+						Rent your choose car with us!
 					</Typography>
 					<br />
 					<br />
@@ -80,11 +81,11 @@ export default function Informing() {
 					<br />
 					<br />
 					<br />
-					<div className={classes.heroButtons}>
+					{/* <div className={classes.heroButtons}>
 						<Grid container spacing={2} justify='center'>
 							<Grid item>
 								<Button variant='contained' color='primary'>
-									<h3>Be our client</h3>
+									<h3>Start Now</h3>
 								</Button>
 							</Grid>
 							<Grid item>
@@ -93,7 +94,7 @@ export default function Informing() {
 								</Button>
 							</Grid>
 						</Grid>
-					</div>
+					</div> */}
 				</Container>
 			</Box>
 		</Grid>

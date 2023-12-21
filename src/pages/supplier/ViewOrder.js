@@ -10,7 +10,6 @@ import Divider from '@material-ui/core/Divider';
 import CardActions from '@material-ui/core/CardActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleOrder } from '../../redux/actions';
-import SupplierLayout from '../../layouts/SupplierLayout';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -21,6 +20,7 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
+import PaymentForm from '../../components/payment/PaymentForm';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -71,8 +71,6 @@ const ViewOrder = props => {
 		history.push(path);
 	};
 	return (
-		<SupplierLayout>
-			{/* Recent Features */}
 			<Grid item xs={12}>
 				<Paper className={classes.paper}>
 					<Container
@@ -137,15 +135,15 @@ const ViewOrder = props => {
 														width: '100%',
 													}}
 												>
-													<Button
+													{/* <Button
 														color='secondary'
 														size='small'
 														variant='contained'
 														style={{ width: '45%' }}
 													>
 														Cancel
-													</Button>
-													<Button
+													</Button> */}
+													{/* <Button
 														color='primary'
 														size='small'
 														style={{
@@ -155,7 +153,7 @@ const ViewOrder = props => {
 														}}
 													>
 														Approve
-													</Button>
+													</Button> */}
 												</CardActions>
 											) : null}
 										</ListItem>
@@ -224,7 +222,7 @@ const ViewOrder = props => {
 										</TableBody>
 									</Table>
 								</TableContainer>
-								<Button
+						    {props.isAdmin &&	<Button
 									color='primary'
 									size='medium'
 									style={{
@@ -236,12 +234,31 @@ const ViewOrder = props => {
 								>
 									Back
 								</Button>
+								}
+
+                            {myprofroma !== undefined ?(
+							<div>
+								{!props.isAdmin && myprofroma.status !=='PAID' && <PaymentForm
+								    bookingEmail={myprofroma.client.email}
+									bookingID={myprofroma.id}
+									amountToPay={items &&
+										(() => {
+											let sum = 0;
+											myprofroma.itemsArray.forEach(item => {
+												sum += (item.itemNumber * item.itemPrice)
+											})
+											return sum;
+										})()}
+								/>
+								}
+								</div>):''
+							}
 							</Grid>
 						</Grid>
 					</Container>
 				</Paper>
 			</Grid>
-		</SupplierLayout>
+		// </SupplierLayout>
 	);
 };
 

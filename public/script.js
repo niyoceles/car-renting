@@ -1,9 +1,10 @@
 /* eslint-disable no-restricted-globals */
-const BASE_URL = "https://api.bookme.rw/api/v1"
+// const BASE_URL = "https://api.bookme.rw/api/v1"
+const BASE_URL = "https://api.godiscoverafrica.rw/api"
 const successData = {status: "PAID"};
 
 function errorCallback(error) {
-  alert("Error happened while paying! Try again.");
+  alert("Error happened while paying! Try again.", error);
 }
 
 function cancelCallback() {
@@ -15,10 +16,14 @@ function cancelCallback() {
 }
 
 function completeCallback(resultIndicator,sessionVersion) {
-  fetch(`${BASE_URL}/bookings/${localStorage.getItem('bookingID')}`, {
+  // fetch(`${BASE_URL}/bookings/${localStorage.getItem('bookingID')}`, {
+  fetch(`${BASE_URL}/order/${localStorage.getItem('bookingID')}`, {
     method: "PUT",
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(successData)
+    body: JSON.stringify({
+      status:'PAID',
+      email:localStorage.getItem('bookingEmail')
+    })
   }).then((res)=> {
     alert("Payment completed! Thank you for booking with GoDiscoverAfrica.");
   }).catch((_)=>{

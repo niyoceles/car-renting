@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { useHistory } from 'react-router-dom';
 import {
   GET_HOME_ITEMS_SUCCESS,
   GET_HOME_ITEMS_FAILURE,
@@ -22,7 +23,7 @@ import {
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const { REACT_APP_BACKEND } = process.env;
+const { REACT_APP_BACKEND, REACT_APP_FRONTEND } = process.env;
 
 // Get my profile
 export const getHomeItems = () => (dispatch) => {
@@ -249,7 +250,7 @@ export const getBookings = () => (dispatch) => {
 };
 
 // Request proforma
-export const createOrder = (orderInfo) => (dispatch) => {
+export const createOrder = (orderInfo, isLater) => (dispatch) => {
   axios
     .post(`${REACT_APP_BACKEND}/order`, orderInfo)
     .then((res) => {
@@ -261,6 +262,12 @@ export const createOrder = (orderInfo) => (dispatch) => {
       localStorage.removeItem('orderSummary');
       localStorage.removeItem('totalPrice');
       toast.success(res.data.message);
+      if(isLater){
+        window.location.href = `${REACT_APP_FRONTEND}/`;
+      }else{
+        window.location.href = `${REACT_APP_FRONTEND}/myorder/${res.data.order.id}`;
+      }
+         
     })
     .catch((err) => {
       console.log(

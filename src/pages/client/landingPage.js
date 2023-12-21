@@ -91,10 +91,10 @@ export default function LandingPage() {
 			name: 'Self Driving',
 			url: '/selfdriving',
 		},
-		{
-			name: 'Car hire',
-			url: '/carhire',
-		},
+		// {
+		// 	name: 'Car hire',
+		// 	url: '/carhire',
+		// },
 		{
 			name: 'Car hire with driver',
 			url: '/carhiredriver',
@@ -103,9 +103,17 @@ export default function LandingPage() {
 			name: 'Self Driving',
 			url: '/selfdriving',
 		},
+		// {
+		// 	name: 'Car hire',
+		// 	url: '/carhire',
+		// },
 		{
-			name: 'Car hire',
-			url: '/carhire',
+			name: 'Car hire with driver',
+			url: '/carhiredriver',
+		},
+		{
+			name: 'Self Driving',
+			url: '/selfdriving',
 		},
 		{
 			name: 'Car hire with driver',
@@ -194,6 +202,7 @@ export default function LandingPage() {
 										image={itemImage}
 										title='car hire'
 									/>
+									
 								</ReactLink>
 							</Card>
 							<Card className={classes.topCard}>

@@ -100,7 +100,7 @@ const Footer = () => {
 	return (
 		<footer className={classes.footer}>
 			<Grid container spacing={6}>
-				<Grid item xs={6} sm={3}>
+				<Grid item xs={6} sm={4}>
 					<Typography variant='body2' align='center' gutterBottom>
 						<img
 							width='100'
@@ -117,7 +117,7 @@ const Footer = () => {
 						Pay with the world's most popular and secure payment methods
 					</Typography>
 				</Grid>
-				<Grid item xs={6} sm={3}>
+				<Grid item xs={6} sm={4}>
 					<Typography variant='body2' align='center' gutterBottom>
 						<img
 							width='100'
@@ -134,7 +134,7 @@ const Footer = () => {
 						100% Payment Protection. Easy Return Policy
 					</Typography>
 				</Grid>
-				<Grid item xs={6} sm={3}>
+				<Grid item xs={6} sm={4}>
 					<Typography variant='body2' align='center' gutterBottom>
 						<img
 							width='100'
@@ -160,7 +160,7 @@ const Footer = () => {
 						</Link>
 					</Typography>
 				</Grid>
-				<Grid item xs={6} sm={3}>
+				{/* <Grid item xs={6} sm={3}>
 					<Typography variant='body2' align='center' gutterBottom>
 						<img
 							width='100'
@@ -176,7 +176,7 @@ const Footer = () => {
 					<Typography variant='body2' color='textSecondary' align='center'>
 						Fast and secure delivery service
 					</Typography>
-				</Grid>
+				</Grid> */}
 			</Grid>
 			<Box m={2} pt={3}>
 				<Divider />
@@ -308,6 +308,22 @@ const Footer = () => {
 							gutterBottom
 						>
 							About us
+						</Typography>
+					</Link>
+					<Link
+						display='block'
+						variant='body2'
+						href='/why-choose-us'
+						align='center'
+						className={classes.links}
+					>
+						<Typography
+							variant='body2'
+							color='textSecondary'
+							align='left'
+							gutterBottom
+						>
+							Why choose us
 						</Typography>
 					</Link>
 					<Link

@@ -20,8 +20,7 @@ import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment';
 import CartLayout from '../../layouts/CartLayout';
 import PersonalInfoWidget from '../../components/SidebarWidget/PersonalInfoWidget';
-import MakePayment from '../../components/payment/MakePayment';
-import PaymentForm from '../../components/PaymentForm.jsx'
+// import PaymentForm from '../../components/payment/PaymentForm.jsx'
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -80,35 +79,6 @@ const Cart = (props) => {
   const [orderSummary, setOrderSummary] = useState(
     bookedItems !== null ? bookedItems : []
   );
-
-  // const handleAddItem = (e, item, itemNumber) => {
-  //   const { id, itemName, itemPrice } = item;
-  //   const orderItem = {
-  //     id,
-  //     itemName,
-  //     itemPrice: itemPrice * 1,
-  //     itemNumber: itemNumber * 1,
-  //   };
-  //   const ordered = orderSummary.findIndex((order) => order.id === id);
-  //   let updatedOrder = [...orderSummary];
-
-  //   console.log('===ordered===>', ordered);
-
-  //   if (ordered >= 0) {
-  //     updatedOrder[ordered] = orderItem;
-  //   } else updatedOrder = [...orderSummary, orderItem];
-
-  //   setOrderSummary(updatedOrder);
-  //   localStorage.setItem('orderSummary', JSON.stringify(updatedOrder));
-  //   const finalOrder = JSON.parse(localStorage.getItem('orderSummary'));
-  //   const totArray = finalOrder.map(
-  //     (order) => order.itemPrice * order.itemNumber
-  //   );
-  //   const total = totArray.reduce((x, y) => x + y, 0);
-
-  //   localStorage.setItem('totalPrice', total);
-  //   setOpen(false);
-  // };
 
   const handleRemoveItem = (e, item) => {
     if (item) {
@@ -171,7 +141,7 @@ const Cart = (props) => {
     }
   }, []);
 
-  const handlePayLater = async () => {
+  const handlePayLater = async (isLater) => {
     const tempOrderInfo = JSON.parse(localStorage.getItem('orderSummary'));
     const tempOrderEtras = JSON.parse(localStorage.getItem('orderExtras'));
     const category =
@@ -182,7 +152,7 @@ const Cart = (props) => {
       category,
     };
     setSubmitted(true);
-    await dispatch(createOrder(bookInfo));
+    await dispatch(createOrder(bookInfo, isLater));
     setOpen(!open);
   };
 
@@ -198,7 +168,7 @@ const Cart = (props) => {
       <main container>
         {/* topBody unit */}
         <Divider />
-        <Container item className={classes.cardGrid} maxWidth="lg">
+        <Container item className={classes.cardGrid} maxWidth="md">
           <Typography
             component="h2"
             variant="h4"
@@ -212,12 +182,12 @@ const Cart = (props) => {
           </Typography>
           <Grid
             container
-            spacing={3}
+            spacing={6}
             // direction="column"
             // alignItems="center"
             // justify="center"
           >
-            <Grid item xs={12} sm={12} md={6} alignItems="center">
+            <Grid item xs={12} sm={12} md={12} alignItems="center">
               <Card className={classes.card} elevation={1}>
                 <Grid container spacing={3}>
                   <Grid item xs={12} sm={12} md={12}>
@@ -361,10 +331,25 @@ const Cart = (props) => {
                           style={{
                             width: '80%',
                           }}
-                          onClick={() => handlePayLater()}
+                          onClick={() => handlePayLater(true)}
                           disabled={isButtonDisabled}
                         >
                           Pay later
+                        </Button>
+
+                        <Button
+                          color="primary"
+                          size="medium"
+                          variant="contained"
+                          style={{
+                            width: '80%',
+                            // color:'#4caf50',
+                            backgroundColor:'#4caf50'
+                          }}
+                          onClick={() => handlePayLater(false)}
+                          disabled={isButtonDisabled}
+                        >
+                          Procced to Pay
                         </Button>
                         <Button
                           color="secondary"
@@ -380,106 +365,11 @@ const Cart = (props) => {
                 </Grid>
               </Card>
             </Grid>
-         
-						<Grid item xs={12} sm={12} md={6}>
-							<Card elevation={1} className={classes.sticky}>
-								<Grid container spacing={3}>
-									<Grid item xs={12} sm={12} md={12}>
-										<Typography
-											component='h4'
-											variant='h6'
-											color='textPrimary'
-											gutterBottom
-											item
-											md={12}
-											align='left'
-											className={classes.title}
-										>
-											Order summary
-										</Typography>
-										<TableContainer>
-											<Table
-												className={classes.table}
-												aria-label='customized table'
-											>
-												<TableBody>
-													{bookedItems && totalPrice !== 0 ? (
-														<>
-															<TableRow>
-																<TableCell component='th' scope='row'>
-																	<strong>Items ({bookedItems.length})</strong>
-																</TableCell>
-																<TableCell align='right'>
-																	<strong>{bookedItems.length}</strong>
-																</TableCell>
-															</TableRow>
-															<TableRow>
-																<TableCell component='th' scope='row'>
-																	<strong>Total Amount to pay</strong>
-																</TableCell>
-																<TableCell align='right'>
-																	<strong>{totalPrice} FRW</strong>
-																</TableCell>
-															</TableRow>
-														</>
-													) : null}
-												</TableBody>
-											</Table>
-										</TableContainer> 
-
-           <hr />
-										{bookedItems && totalPrice !== 0 ? (
-											<CardActions
-												style={{ position: 'relative', bottom: '0' }}
-											>
-												<Button
-													color='primary'
-													variant='contained'
-													size='medium'
-													onClick={() => handlePayLater()}
-													disabled={isButtonDisabled}
-													style={{
-														width: '70%',
-													}}
-												>
-													Pay later
-												</Button>
-												<Button
-													color='secondary'
-													variant='outlined'
-													size='medium'
-													onClick={handleCancelOrder}
-												>
-													Cancel
-												</Button>
-											</CardActions>
-										) : null}
-										<hr /> 
-            <CardActions style={{ position: 'relative', bottom: '0' }}>
-             
-											{/* <MakePayment 
-                      totalPrice={totalPrice} 
-                      email={orderInfo.email}
-			                phonenumber={orderInfo.phonenumber}
-                      name={orderInfo.names} 
-                      /> */}
-                  
-										</CardActions> 
-                
-          </Grid>
-								</Grid>
-							</Card>
-						</Grid> 
-     
           </Grid>
           <br />
           <br />
         </Container>
         <Divider />
-        <PaymentForm
-                      bookingID={bookingID}
-                      amountToPay={totalPrice}
-                  />
       </main>
     </CartLayout>
   );

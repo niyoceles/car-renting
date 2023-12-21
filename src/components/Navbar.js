@@ -289,6 +289,19 @@ export default function ButtonAppBar() {
           >
             |
           </Typography>{' '}
+          <Link to="/why-choose-us" className={classes.links}>
+            <Typography variant="body2" color="textSecondary" align="center">
+            Why Choose Us
+            </Typography>
+          </Link>
+          <Typography
+            variant="body1"
+            color="textPrimary"
+            align="center"
+            style={{ paddingLeft: 5, paddingRight: 5 }}
+          >
+            |
+          </Typography>{' '}
           <Link to="/contact-us" className={classes.links}>
             <Typography variant="body2" color="textSecondary" align="center">
               Help
@@ -302,6 +315,7 @@ export default function ButtonAppBar() {
           >
             |
           </Typography>{' '}
+
           <Link to="/terms-and-conditions" className={classes.links}>
             <Typography variant="body2" color="textSecondary" align="center">
               Terms & conditions
@@ -317,6 +331,18 @@ export default function ButtonAppBar() {
           </Typography>{' '}
           <Typography variant="body2" color="textSecondary" align="center">
             <CallIcon style={{ marginBottom: -8 }} /> +250 791 349 744
+          </Typography>{' '}
+
+          <Typography
+            variant="body1"
+            color="textPrimary"
+            align="center"
+            style={{ paddingLeft: 5, paddingRight: 5 }}
+          >
+            |
+          </Typography>{' '}
+          <Typography variant="body2" color="textSecondary" align="center">
+            <EmailIcon style={{ marginBottom: -8 }} /> info@godiscoverafrica.rw
           </Typography>{' '}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
