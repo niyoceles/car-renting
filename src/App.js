@@ -9,6 +9,7 @@ import store from "./redux/store/index";
 import { SET_AUTHENTICATED } from "../src/redux/types";
 import { logoutUser } from "../src/redux/actions";
 import { Routes } from "./Routes";
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const theme = createMuiTheme(objectTheme);
 
@@ -26,12 +27,17 @@ if (token) {
 
 
 class App extends Component {
+;
+
   render() {
+    const queryClient = new QueryClient()
     return (
       <MuiThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <Routes />
         </Provider>
+        </QueryClientProvider>
       </MuiThemeProvider>
     );
   }

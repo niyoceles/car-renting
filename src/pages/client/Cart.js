@@ -21,6 +21,7 @@ import moment from 'moment';
 import CartLayout from '../../layouts/CartLayout';
 import PersonalInfoWidget from '../../components/SidebarWidget/PersonalInfoWidget';
 import MakePayment from '../../components/payment/MakePayment';
+import PaymentForm from '../../components/PaymentForm.jsx'
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -74,6 +75,7 @@ const Cart = (props) => {
 
   const dispatch = useDispatch();
   const [submitted, setSubmitted] = useState(false);
+  const [bookingID, setBookingId] = useState("");
 
   const [orderSummary, setOrderSummary] = useState(
     bookedItems !== null ? bookedItems : []
@@ -144,6 +146,8 @@ const Cart = (props) => {
 
   useEffect(() => {
     localStorage.setItem('orderExtras', JSON.stringify(orderInfo));
+    localStorage.setItem("bookingID", 'djksjhdsjha');
+    // localStorage.setItem("bookingAmount", String(formData.amount));
     const finalOrder = JSON.parse(localStorage.getItem('orderSummary'));
     if (finalOrder) {
       const totArray = finalOrder.map(
@@ -155,6 +159,17 @@ const Cart = (props) => {
       setTotalPrice((localStorage.getItem('totalPrice') || 0) * 1);
     }
   }, [orderInfo, orderSummary]);
+
+  const handleSuccessBooking = (id) => setBookingId(id);
+
+  useEffect(() => {
+    if (window && window !== undefined) {
+      const bookingId = localStorage.getItem("bookingID");
+      if (bookingId) {
+        setBookingId(bookingId);
+      }
+    }
+  }, []);
 
   const handlePayLater = async () => {
     const tempOrderInfo = JSON.parse(localStorage.getItem('orderSummary'));
@@ -442,13 +457,15 @@ const Cart = (props) => {
 										<hr /> 
             <CardActions style={{ position: 'relative', bottom: '0' }}>
              
-											<MakePayment 
+											{/* <MakePayment 
                       totalPrice={totalPrice} 
                       email={orderInfo.email}
 			                phonenumber={orderInfo.phonenumber}
                       name={orderInfo.names} 
-                      />
+                      /> */}
+                  
 										</CardActions> 
+                
           </Grid>
 								</Grid>
 							</Card>
@@ -459,6 +476,10 @@ const Cart = (props) => {
           <br />
         </Container>
         <Divider />
+        <PaymentForm
+                      bookingID={bookingID}
+                      amountToPay={totalPrice}
+                  />
       </main>
     </CartLayout>
   );
