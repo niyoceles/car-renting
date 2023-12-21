@@ -477,8 +477,8 @@ const Cart = (props) => {
         </Container>
         <Divider />
         <PaymentForm
-                      bookingID={bookingID}
-                      amountToPay={totalPrice}
+                      bookingID={123445}
+                      amountToPay={5000}
                   />
       </main>
     </CartLayout>

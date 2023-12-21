@@ -32,15 +32,15 @@ const CreatePayMentSession = async ({ amountToPay }) => {
 const PaymentForm = ({ amountToPay, bookingID }) => {
   let Checkout;
   console.log('amount to pay', amountToPay);
-  console.log('amount to pay', bookingID);
+  console.log('bookingId', bookingID);
 
-  useEffect(() => {
     if (typeof window !== "undefined") {
       // @ts-ignore
       Checkout = window.Checkout;
     }
-  }, []);
 
+
+  
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
 
   const paymentMethods = [
@@ -88,8 +88,7 @@ const PaymentForm = ({ amountToPay, bookingID }) => {
       pay(data.sessionId, uid);
     },
     onError(error) {
-      console.log('Errorrrr=========================', error);
-      toast.error("An error occurred during payment session.");
+      toast.error(error.message ?? "An error occurred during payment session.");
     },
     mutationFn: () => CreatePayMentSession({ amountToPay }),
   });

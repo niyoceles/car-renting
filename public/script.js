@@ -3,7 +3,7 @@ const BASE_URL = "https://api.bookme.rw/api/v1"
 const successData = {status: "PAID"};
 
 function errorCallback(error) {
-  alert("Error happened while paying! Try again.");
+  alert("Error happened while paying! Try again.", error);
 }
 
 function cancelCallback() {
