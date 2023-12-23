@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { useHistory } from 'react-router-dom';
 import {
   GET_HOME_ITEMS_SUCCESS,
   GET_HOME_ITEMS_FAILURE,
@@ -249,7 +250,7 @@ export const getBookings = () => (dispatch) => {
 };
 
 // Request proforma
-export const createOrder = (orderInfo) => (dispatch) => {
+export const createOrder = (orderInfo, isLater) => (dispatch) => {
   axios
     .post(`${REACT_APP_BACKEND}/order`, orderInfo)
     .then((res) => {
@@ -261,6 +262,12 @@ export const createOrder = (orderInfo) => (dispatch) => {
       localStorage.removeItem('orderSummary');
       localStorage.removeItem('totalPrice');
       toast.success(res.data.message);
+      if(isLater){
+        window.location.href = `http://localhost:3000/`;
+      }else{
+        window.location.href = `http://localhost:3000/order/${res.data.order.id}`;
+      }
+         
     })
     .catch((err) => {
       console.log(

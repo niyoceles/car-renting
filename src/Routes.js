@@ -29,6 +29,8 @@ import CategoryPage from './pages/supplier/CategoryPage';
 import AboutUs from './pages/client/AboutUs';
 import ViewOrder from './pages/supplier/ViewOrder';
 import TermsConditions from './pages/client/TermsConditions';
+import ViewOrderPage from './pages/supplier/ViewOrderPage';
+import ViewMyOrder from './pages/client/viewMyOrder';
 
 export const Routes = () => {
 	return (
@@ -49,7 +51,8 @@ export const Routes = () => {
 					<AuthRoute exact path='/my-proforma' component={MyProforma} />
 					<Route exact path='/my-proforma/:id' component={SingleProformaPage} />
 					<Route exact path='/proforma/:id' component={ViewProforma} />
-					<Route exact path='/order/:id' component={ViewOrder} />
+					<Route exact path='/order/:id' component={ViewOrderPage} />
+					<Route exact path='/myorder/:id' component={ViewMyOrder} />
 					<AuthRoute exact path='/client' component={clients} />
 					<AuthRoute exact path='/bookings' component={Bookings} />
 					<AuthRoute exact path='/me' component={MyProfile} />

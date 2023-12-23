@@ -20,7 +20,7 @@ import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment';
 import CartLayout from '../../layouts/CartLayout';
 import PersonalInfoWidget from '../../components/SidebarWidget/PersonalInfoWidget';
-import MakePayment from '../../components/payment/MakePayment';
+// import PaymentForm from '../../components/payment/PaymentForm.jsx'
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -74,6 +74,7 @@ const Cart = (props) => {
 
   const dispatch = useDispatch();
   const [submitted, setSubmitted] = useState(false);
+  const [bookingID, setBookingId] = useState("");
 
   const [orderSummary, setOrderSummary] = useState(
     bookedItems !== null ? bookedItems : []
@@ -144,6 +145,8 @@ const Cart = (props) => {
 
   useEffect(() => {
     localStorage.setItem('orderExtras', JSON.stringify(orderInfo));
+    localStorage.setItem("bookingID", 'djksjhdsjha');
+    // localStorage.setItem("bookingAmount", String(formData.amount));
     const finalOrder = JSON.parse(localStorage.getItem('orderSummary'));
     if (finalOrder) {
       const totArray = finalOrder.map(
@@ -156,7 +159,18 @@ const Cart = (props) => {
     }
   }, [orderInfo, orderSummary]);
 
-  const handlePayLater = async () => {
+  const handleSuccessBooking = (id) => setBookingId(id);
+
+  useEffect(() => {
+    if (window && window !== undefined) {
+      const bookingId = localStorage.getItem("bookingID");
+      if (bookingId) {
+        setBookingId(bookingId);
+      }
+    }
+  }, []);
+
+  const handlePayLater = async (isLater) => {
     const tempOrderInfo = JSON.parse(localStorage.getItem('orderSummary'));
     const tempOrderEtras = JSON.parse(localStorage.getItem('orderExtras'));
     const category =
@@ -167,7 +181,7 @@ const Cart = (props) => {
       category,
     };
     setSubmitted(true);
-    await dispatch(createOrder(bookInfo));
+    await dispatch(createOrder(bookInfo, isLater));
     setOpen(!open);
   };
 
@@ -183,7 +197,7 @@ const Cart = (props) => {
       <main container>
         {/* topBody unit */}
         <Divider />
-        <Container item className={classes.cardGrid} maxWidth="lg">
+        <Container item className={classes.cardGrid} maxWidth="md">
           <Typography
             component="h2"
             variant="h4"
@@ -197,12 +211,12 @@ const Cart = (props) => {
           </Typography>
           <Grid
             container
-            spacing={3}
+            spacing={6}
             // direction="column"
             // alignItems="center"
             // justify="center"
           >
-            <Grid item xs={12} sm={12} md={6} alignItems="center">
+            <Grid item xs={12} sm={12} md={12} alignItems="center">
               <Card className={classes.card} elevation={1}>
                 <Grid container spacing={3}>
                   <Grid item xs={12} sm={12} md={12}>
@@ -346,10 +360,25 @@ const Cart = (props) => {
                           style={{
                             width: '80%',
                           }}
-                          onClick={() => handlePayLater()}
+                          onClick={() => handlePayLater(true)}
                           disabled={isButtonDisabled}
                         >
                           Pay later
+                        </Button>
+
+                        <Button
+                          color="primary"
+                          size="medium"
+                          variant="contained"
+                          style={{
+                            width: '80%',
+                            // color:'#4caf50',
+                            backgroundColor:'#4caf50'
+                          }}
+                          onClick={() => handlePayLater(false)}
+                          disabled={isButtonDisabled}
+                        >
+                          Procced to Pay
                         </Button>
                         <Button
                           color="secondary"
@@ -365,95 +394,6 @@ const Cart = (props) => {
                 </Grid>
               </Card>
             </Grid>
-         
-						<Grid item xs={12} sm={12} md={6}>
-							<Card elevation={1} className={classes.sticky}>
-								<Grid container spacing={3}>
-									<Grid item xs={12} sm={12} md={12}>
-										<Typography
-											component='h4'
-											variant='h6'
-											color='textPrimary'
-											gutterBottom
-											item
-											md={12}
-											align='left'
-											className={classes.title}
-										>
-											Order summary
-										</Typography>
-										<TableContainer>
-											<Table
-												className={classes.table}
-												aria-label='customized table'
-											>
-												<TableBody>
-													{bookedItems && totalPrice !== 0 ? (
-														<>
-															<TableRow>
-																<TableCell component='th' scope='row'>
-																	<strong>Items ({bookedItems.length})</strong>
-																</TableCell>
-																<TableCell align='right'>
-																	<strong>{bookedItems.length}</strong>
-																</TableCell>
-															</TableRow>
-															<TableRow>
-																<TableCell component='th' scope='row'>
-																	<strong>Total Amount to pay</strong>
-																</TableCell>
-																<TableCell align='right'>
-																	<strong>{totalPrice} FRW</strong>
-																</TableCell>
-															</TableRow>
-														</>
-													) : null}
-												</TableBody>
-											</Table>
-										</TableContainer> 
-
-           <hr />
-										{bookedItems && totalPrice !== 0 ? (
-											<CardActions
-												style={{ position: 'relative', bottom: '0' }}
-											>
-												<Button
-													color='primary'
-													variant='contained'
-													size='medium'
-													onClick={() => handlePayLater()}
-													disabled={isButtonDisabled}
-													style={{
-														width: '70%',
-													}}
-												>
-													Pay later
-												</Button>
-												<Button
-													color='secondary'
-													variant='outlined'
-													size='medium'
-													onClick={handleCancelOrder}
-												>
-													Cancel
-												</Button>
-											</CardActions>
-										) : null}
-										<hr /> 
-            <CardActions style={{ position: 'relative', bottom: '0' }}>
-             
-											<MakePayment 
-                      totalPrice={totalPrice} 
-                      email={orderInfo.email}
-			                phonenumber={orderInfo.phonenumber}
-                      name={orderInfo.names} 
-                      />
-										</CardActions> 
-          </Grid>
-								</Grid>
-							</Card>
-						</Grid> 
-     
           </Grid>
           <br />
           <br />
