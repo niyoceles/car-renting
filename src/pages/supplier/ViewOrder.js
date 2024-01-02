@@ -76,8 +76,7 @@ const ViewOrder = props => {
 
 	const handlePayOpen = (amountToPay) => {
 		localStorage.setItem("amountToPay", amountToPay);
-		let path = `/pay`;
-		history.push(path);
+		window.location.href = `${process.env.REACT_APP_FRONTEND}/pay`;
 	};
 	return (
 			<Grid item xs={12}>

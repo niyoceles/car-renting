@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect } from 'react';
+import React from 'react';
 import PaymentForm from '../../components/payment/PaymentForm';
-import { Grid, Item } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 
 const Pay = () => {

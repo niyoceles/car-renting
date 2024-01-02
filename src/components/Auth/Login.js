@@ -15,7 +15,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { loginUser } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import PaymentForm from '../payment/PaymentForm';
 
 const useStyles = makeStyles(theme => ({
 	paper: {
@@ -71,7 +70,7 @@ const Login = () => {
 
 	if (loginSuccess) {
 		if (userType === 'client') return <Redirect to='/' />;
-		return <Redirect to='/account/supplier/dashboard' />;
+		return <Redirect to='/account/supplier/orders' />;
 	}
 
 	return (
@@ -132,11 +131,6 @@ const Login = () => {
 					)}
 					Sign In
 				</Button>
-				<PaymentForm
-								    bookingEmail={'niyoceles3@gmail.com'}
-									bookingID={'b02b34c3-e916-4893-b821-2b324b33d4e6'}
-									amountToPay={100}
-								/>
 				<Grid container>
 					<Grid item xs>
 						<Link href='/' variant='body2'>

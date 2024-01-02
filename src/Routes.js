@@ -86,11 +86,7 @@ export const Routes = () => {
 						path='/account/supplier/customers'
 						component={customersPage}
 					/>
-					<AuthRoute
-						exact
-						path='/account/supplier/dashboard'
-						component={DashboardPage}
-					/>
+		
 					<AuthRoute
 						exact
 						path='/account/supplier/reports'
