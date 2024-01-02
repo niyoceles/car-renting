@@ -54,6 +54,7 @@ const useStyles = makeStyles(theme => ({
 const ViewOrder = props => {
 	const history = useHistory();
 	const classes = useStyles();
+	let amountToPay;
 	const myprofroma = useSelector(
 		state => state.order.orderItem.oneorder
 	);
@@ -61,13 +62,21 @@ const ViewOrder = props => {
 
 	const dispatch = useDispatch();
 	useEffect(() => {
+		console.log('sjsjsjjjjjjj', )
 		const lastPath = window.location.pathname;
 		const id = lastPath.split('/');
+		console.log('sjsjsjjjjjjj', id);
 		dispatch(getSingleOrder(id[2]));
 	}, [dispatch]);
 
 	const handleClickOpen = () => {
 		let path = `/account/supplier/orders`;
+		history.push(path);
+	};
+
+	const handlePayOpen = (amountToPay) => {
+		localStorage.setItem("amountToPay", amountToPay);
+		let path = `/pay`;
 		history.push(path);
 	};
 	return (
@@ -119,11 +128,11 @@ const ViewOrder = props => {
 											<ListItemText primary={moment(myprofroma.deadline).format('MMM Do YY, h:mm a')} />
 										</ListItem>
 										<Divider variant='inset' component='li' />
-
+{/* 
 										<ListItem>
 											<ListItemText primary='Status' />
 											<ListItemText primary={myprofroma.status} />
-										</ListItem>
+										</ListItem> */}
 										<Divider variant='inset' component='li' />
 										<Divider />
 										<ListItem>
@@ -213,6 +222,7 @@ const ViewOrder = props => {
 																myprofroma.itemsArray.forEach(item => {
 																	sum += (item.itemNumber * item.itemPrice)
 																})
+																amountToPay = sum;
 																return sum;
 															})()
 														}
@@ -238,18 +248,24 @@ const ViewOrder = props => {
 
                             {myprofroma !== undefined ?(
 							<div>
-								{!props.isAdmin && myprofroma.status !=='PAID' && <PaymentForm
-								    bookingEmail={myprofroma.client.email}
-									bookingID={myprofroma.id}
-									amountToPay={items &&
-										(() => {
-											let sum = 0;
-											myprofroma.itemsArray.forEach(item => {
-												sum += (item.itemNumber * item.itemPrice)
-											})
-											return sum;
-										})()}
-								/>
+								{!props.isAdmin && myprofroma.status !=='PAID' && 
+								// <PaymentForm
+								//     bookingEmail={myprofroma.client.email}
+								// 	bookingID={myprofroma.id}
+								// 	amountToPay={amountToPay}
+								// />
+								<Button
+									color='primary'
+									size='medium'
+									style={{
+										backgroundColor: '#0080003a',
+										width: '100%',
+										color: 'green',
+									}}
+									onClick={() => handlePayOpen(amountToPay)}
+								>
+								Go to pay
+								</Button>
 								}
 								</div>):''
 							}

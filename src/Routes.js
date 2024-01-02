@@ -32,6 +32,7 @@ import TermsConditions from './pages/client/TermsConditions';
 import ViewOrderPage from './pages/supplier/ViewOrderPage';
 import ViewMyOrder from './pages/client/viewMyOrder';
 import WhyChooseUs from './pages/client/WhyChoose';
+import Pay from './components/payment/pay';
 
 export const Routes = () => {
 	return (
@@ -40,6 +41,7 @@ export const Routes = () => {
 				<Switch>
 					<Route exact path='/' component={LandingPage} />
 					<Route exact path='/login' component={LoginPage} />
+					<Route exact path='/pay' component={Pay} />
 					{/* <Route exact path='/signup' component={SignupPage} /> */}
 					<Route exact path='/account/verified' component={VerifiedAccount} />
 					<Route exact path='/view/:id' component={ViewItem} />

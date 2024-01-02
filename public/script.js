@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 // const BASE_URL = "https://api.bookme.rw/api/v1"
-const BASE_URL = "https://api.godiscoverafrica.rw/api"
+const BASE_URL = "https://apitwo.bookme.rw//api"
 const successData = {status: "PAID"};
 
 function errorCallback(error) {
@@ -12,6 +12,10 @@ function cancelCallback() {
 
   if(localStorage.getItem('bookingID')){
     localStorage.removeItem('bookingID')
+  }
+
+  if(localStorage.getItem('amountToPay')){
+    localStorage.removeItem('amountToPay')
   }
 }
 
@@ -29,5 +33,7 @@ function completeCallback(resultIndicator,sessionVersion) {
   }).catch((_)=>{
     alert("Payment failed! Try again")
   });
-  localStorage.removeItem('bookingID')
+  localStorage.removeItem('bookingID');
+  localStorage.removeItem("amountToPay");
+  localStorage.clear();
 }

@@ -27,7 +27,6 @@ export const getSingleOrder = id => dispatch => {
 	axios
 		.get(`${REACT_APP_BACKEND}/order/${id}`)
 		.then(res => {
-			console.log(res.data);
 			dispatch({
 				type: GET_SINGLE_ORDER_SUCCESS,
 				payload: res.data,
