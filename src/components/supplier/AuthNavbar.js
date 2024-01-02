@@ -160,11 +160,11 @@ export default function AuthNavbar() {
 					>
 						Car rent
 					</Typography>
-					<IconButton color='inherit'>
+					{/* <IconButton color='inherit'>
 						<Badge badgeContent={4} color='secondary'>
 							<AccountBoxIcon />
 						</Badge>
-					</IconButton>
+					</IconButton> */}
 					<IconButton
 						edge='start'
 						className={classes.menuButton}
