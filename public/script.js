@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 // const BASE_URL = "https://api.bookme.rw/api/v1"
-const BASE_URL = "https://apitwo.bookme.rw//api"
+const BASE_URL = "https://apitwo.bookme.rw/api"
 const successData = {status: "PAID"};
 
 function errorCallback(error) {
