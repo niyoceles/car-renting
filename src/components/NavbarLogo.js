@@ -177,12 +177,12 @@ export default function ButtonAppBar() {
 				color='default'
 				position='sticky'
 				indicatorColor='primary'
-				style={{ backgroundColor: '#fff', backgroundSize: 'cover', height: 40 }}
+				style={{ backgroundColor: '#e91e63', backgroundSize: 'cover', height: 40 }}
 				elevation={0}
 			>
 				<Toolbar style={{ marginTop: -15 }}>
 					<Link to='/' className={classes.links}>
-						<Typography variant='body2' color='textSecondary' align='center'>
+						<Typography variant='body2' color='textSecondary' style={{color:'#fff'}} align='center'>
 							Home
 						</Typography>
 					</Link>
@@ -195,7 +195,7 @@ export default function ButtonAppBar() {
 						|
 					</Typography>{' '}
 					<Link to='/contact-us' className={classes.links}>
-						<Typography variant='body2' color='textSecondary' align='center'>
+						<Typography variant='body2' color='textSecondary' style={{color:'#fff'}} align='center'>
 							Help
 						</Typography>
 					</Link>
@@ -203,11 +203,11 @@ export default function ButtonAppBar() {
 						variant='body1'
 						color='textPrimary'
 						align='center'
-						style={{ paddingLeft: 5, paddingRight: 5 }}
+						style={{ paddingLeft: 5, paddingRight: 5, color:'#fff' }}
 					>
 						|
 					</Typography>{' '}
-					<Typography variant='body2' color='textSecondary' align='center'>
+					<Typography variant='body2' color='textSecondary' style={{color:'#fff'}} align='center'>
 						<CallIcon style={{ marginBottom: -8 }} /> +250 791 349 744
 					</Typography>{' '}
 					<div className={classes.grow} />
