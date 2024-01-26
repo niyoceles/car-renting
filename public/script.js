@@ -26,7 +26,9 @@ function completeCallback(resultIndicator,sessionVersion) {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       status:'PAID',
-      email:localStorage.getItem('bookingEmail')
+      email:localStorage.getItem('bookingEmail'),
+      names:localStorage.getItem('bookingEmail'),
+      appUrl:'https://www.carrental.bookme.rw'
     })
   }).then((res)=> {
     alert("Payment completed! Thank you for booking with GoDiscoverAfrica.");
