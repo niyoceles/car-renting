@@ -75,7 +75,7 @@ const SingleBookings = props => {
 										<ListItem>
 											<ListItemText primary='Price' />
 											<ListItemText
-												primary={props.details.items.itemPrice + 'Rwf'}
+												primary={'$'+props.details.items.itemPrice}
 											/>
 										</ListItem>
 										<Divider variant='inset' component='li' />

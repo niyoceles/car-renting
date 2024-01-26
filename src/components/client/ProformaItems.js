@@ -154,10 +154,10 @@ const ProformaItems = props => {
 											variant='extended'
 											size='small'
 											color='tertiary'
-											aria-label={item.itemPrice + 'Rwf'}
+											aria-label={'$'+item.itemPrice}
 											className={classes.btnBooking}
 										>
-											{item.itemPrice + 'Rwf'}
+											{ '$' +item.itemPrice}
 										</Fab>
 									</Typography>
 									<br />

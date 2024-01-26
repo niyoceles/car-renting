@@ -116,7 +116,6 @@ const Cart = (props) => {
 
   useEffect(() => {
     localStorage.setItem('orderExtras', JSON.stringify(orderInfo));
-    localStorage.setItem("bookingID", 'djksjhdsjha');
     // localStorage.setItem("bookingAmount", String(formData.amount));
     const finalOrder = JSON.parse(localStorage.getItem('orderSummary'));
     if (finalOrder) {
@@ -222,7 +221,7 @@ const Cart = (props) => {
                                   {item.itemPrice}
                                 </TableCell>
                                 <TableCell align="right">
-                                  <b>{item.itemPrice * item.itemNumber}</b> Rwf
+                                  <b>$ {item.itemPrice * item.itemNumber}</b>
                                 </TableCell>
                                 <TableCell align="right">
                                   <Button color="secondary">

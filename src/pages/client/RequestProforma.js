@@ -286,7 +286,7 @@ const RequestProforma = (props) => {
                             {item.itemNumber} X
                           </TableCell>
                           <TableCell align="right">
-                            {item.itemPrice} Rwf
+                           $ {item.itemPrice}
                           </TableCell>
                           <TableCell align="right">
                             <Button color="secondary">

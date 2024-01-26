@@ -183,7 +183,7 @@ const ViewOrder = props => {
 															{item.itemName}
 														</TableCell>
 														<TableCell align='right'>
-															{item.itemPrice} Rwf
+															${item.itemPrice}
 														</TableCell>
 														<TableCell align='right'>
 															{item.itemNumber}
