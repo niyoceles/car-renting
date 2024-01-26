@@ -33,6 +33,7 @@ const ContactForm = () => {
 		names: '',
 		email: '',
 		subject: '',
+		phone:'',
 		message: '',
 	});
 	const loading = useSelector(state => state.contact.contactData);
@@ -61,6 +62,7 @@ const ContactForm = () => {
 					names: '',
 					email: '',
 					subject: '',
+					phone:'',
 					message: '',
 				});
 				setValidated(false);
@@ -106,6 +108,15 @@ const ContactForm = () => {
 						name='subject'
 						required
 						value={user.subject}
+						onChange={handleChange}
+					/>
+						<TextField
+						id='phone'
+						label='Phone'
+						margin='normal'
+						name='phone'
+						required
+						value={user.phone}
 						onChange={handleChange}
 					/>
 					<TextField
