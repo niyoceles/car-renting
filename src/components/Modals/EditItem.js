@@ -110,12 +110,12 @@ const EditItem = props => {
 		}, 1000);
 	}
 
-	const uploadFile = ({ target: { files } }) => {
+	const uploadFile = async ({ target: { files } }) => {
 		let data = new FormData();
 		data.append('file', files[0]);
 		data.append('tags', `celestin, image`);
 		data.append('upload_preset', REACT_APP_CLOUDINARY_UPLOAD_PRESET); // Replace the preset name with your own
-		data.append('api_key', REACT_APP_CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary key
+		// data.append('api_key', REACT_APP_CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary key
 		data.append('timestamp', (Date.now() / 1000) | 0);
 		data.append('folder', 'QUINCAPARADI/ITEMS');
 
@@ -127,25 +127,59 @@ const EditItem = props => {
 			},
 		};
 
-		axios
-			.post(
-				`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUDINARY_NAME}/image/upload`,
-				data,
-				{
-					headers: {
-						'X-Requested-With': 'XMLHttpRequest',
-						'Content-Type': 'application/json;charset=UTF-8',
-						'Access-Control-Allow-Origin': true,
-						'Access-Control-Allow-Credentials': true,
-					},
-				},
-				options
-			)
-			.then(res => {
-				console.log('UPLOADED', res.data.url);
-				localStorage.setItem('imageUrl', res.data.url);
-			});
+		await fetch(
+			`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUDINARY_NAME}/image/upload`,
+			{
+				method: 'post',
+				body: data,
+			},
+			options
+		)
+			.then(resp => resp.json())
+			.then(data => {
+				localStorage.removeItem('imageUrl');
+				localStorage.setItem('imageUrl', data.secure_url);
+				console.log('UPLOADED', data.secure_url);
+			})
+			.catch(err => console.log(err));
 	};
+
+	// const uploadFile = ({ target: { files } }) => {
+	// 	let data = new FormData();
+	// 	data.append('file', files[0]);
+	// 	data.append('tags', `celestin, image`);
+	// 	data.append('upload_preset', REACT_APP_CLOUDINARY_UPLOAD_PRESET); // Replace the preset name with your own
+	// 	data.append('api_key', REACT_APP_CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary key
+	// 	data.append('timestamp', (Date.now() / 1000) | 0);
+	// 	data.append('folder', 'QUINCAPARADI/ITEMS');
+
+	// 	const options = {
+	// 		onUploadProgress: progressEvent => {
+	// 			const { loaded, total } = progressEvent;
+	// 			let percent = Math.floor((loaded * 100) / total);
+	// 			console.log(`${loaded}kb of ${total}kb | ${percent}%`);
+	// 		},
+	// 	};
+
+	// 	axios
+	// 		.post(
+	// 			`https://api.cloudinary.com/v1_1/${REACT_APP_CLOUDINARY_NAME}/image/upload`,
+	// 			data,
+	// 			{
+	// 				headers: {
+	// 					'X-Requested-With': 'XMLHttpRequest',
+	// 					'Content-Type': 'application/json;charset=UTF-8',
+	// 					'Access-Control-Allow-Origin': true,
+	// 					'Access-Control-Allow-Credentials': true,
+	// 				},
+	// 			},
+	// 			options
+	// 		)
+	// 		.then(res => {
+	// 			console.log('UPLOADED', res.data.url);
+	// 			localStorage.setItem('imageUrl', res.data.url);
+	// 		});
+	// };
 
 	const linkImage = localStorage.imageUrl;
 	const isRequired = <Alert severity='error'>is required</Alert>;
