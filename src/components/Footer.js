@@ -85,17 +85,17 @@ const Footer = () => {
 			url: '/all',
 		},
 		{
-			name: 'Self Driving',
-			url: '/category/selfdriving',
-		},
-		{
-			name: 'Car hire',
-			url: '/category/carhire',
-		},
-		{
 			name: 'Car hire with driver',
-			url: '/category/carhiredriver',
+			url: '/carhiredriver',
 		},
+		{
+			name: 'Self Driving',
+			url: '/selfdriving',
+		},
+		// {
+		// 	name: 'Car hire with driver',
+		// 	url: '/category/carhiredriver',
+		// },
 	];
 	return (
 		<footer className={classes.footer}>
@@ -294,7 +294,7 @@ const Footer = () => {
 							Contact us
 						</Typography>
 					</Link>
-					<Link
+					{/* <Link
 						display='block'
 						variant='body2'
 						href='/about-us'
@@ -309,8 +309,8 @@ const Footer = () => {
 						>
 							About us
 						</Typography>
-					</Link>
-					<Link
+					</Link> */}
+					{/* <Link
 						display='block'
 						variant='body2'
 						href='/why-choose-us'
@@ -325,8 +325,8 @@ const Footer = () => {
 						>
 							Why choose us
 						</Typography>
-					</Link>
-					<Link
+					</Link> */}
+					{/* <Link
 						display='block'
 						variant='body2'
 						href='/terms-and-conditions'
@@ -341,7 +341,7 @@ const Footer = () => {
 						>
 							Terms & Conditions
 						</Typography>
-					</Link>
+					</Link> */}
 				</Grid>
 				<Grid item xs={6} sm={3}>
 					<Typography

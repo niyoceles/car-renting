@@ -87,10 +87,10 @@ export default function LandingPage() {
 			name: 'All Categories',
 			url: '/all',
 		},
-		{
-			name: 'Self Driving',
-			url: '/selfdriving',
-		},
+		// {
+		// 	name: 'Self Driving',
+		// 	url: '/selfdriving',
+		// },
 		// {
 		// 	name: 'Car hire',
 		// 	url: '/carhire',
@@ -107,22 +107,22 @@ export default function LandingPage() {
 		// 	name: 'Car hire',
 		// 	url: '/carhire',
 		// },
-		{
-			name: 'Car hire with driver',
-			url: '/carhiredriver',
-		},
-		{
-			name: 'Self Driving',
-			url: '/selfdriving',
-		},
-		{
-			name: 'Car hire with driver',
-			url: '/carhiredriver',
-		},
-		{
-			name: 'Self Driving',
-			url: '/selfdriving',
-		},
+		// {
+		// 	name: 'Car hire with driver',
+		// 	url: '/carhiredriver',
+		// },
+		// {
+		// 	name: 'Self Driving',
+		// 	url: '/selfdriving',
+		// },
+		// {
+		// 	name: 'Car hire with driver',
+		// 	url: '/carhiredriver',
+		// },
+		// {
+		// 	name: 'Self Driving',
+		// 	url: '/selfdriving',
+		// },
 	];
 	const classes = useStyles();
 	const selfDrivings = useSelector(

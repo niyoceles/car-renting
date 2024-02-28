@@ -130,8 +130,8 @@ function FullWidthGrid() {
 				<Grid item xs={6} sm={3}>
 					<InputBase
 						className={classes.input}
-						placeholder='Search by Hotel names'
-						inputProps={{ 'aria-label': 'Search by hotel name' }}
+						placeholder='Search '
+						inputProps={{ 'aria-label': 'Search ' }}
 					/>
 				</Grid>
 				<Grid item xs={6} sm={2}>

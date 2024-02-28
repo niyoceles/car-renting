@@ -173,11 +173,11 @@ export default ()=>{
                 />
             </MuiPickersUtilsProvider>
         </Grid>
-        <Grid item xs={6} sm={3}>
+        {/* <Grid item xs={6} sm={3}>
             <Button variant="contained" color="primary" margin="normal" fullWidth>
              <SearchIcon/> Search
           </Button>
-        </Grid>
+        </Grid> */}
       </Grid>
     )
 }

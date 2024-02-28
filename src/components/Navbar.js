@@ -289,11 +289,11 @@ export default function ButtonAppBar() {
           >
             |
           </Typography>{' '}
-          <Link to="/why-choose-us" className={classes.links}>
+          {/* <Link to="/why-choose-us" className={classes.links}>
             <Typography variant="body2" color="textSecondary" style={{color:'#fff'}} align="center">
             Why Choose Us
             </Typography>
-          </Link>
+          </Link> */}
           <Typography
             variant="body1"
             color="textPrimary"
@@ -316,11 +316,11 @@ export default function ButtonAppBar() {
             |
           </Typography>{' '}
 
-          <Link to="/terms-and-conditions" className={classes.links}>
+          {/* <Link to="/terms-and-conditions" className={classes.links}>
             <Typography variant="body2" color="textSecondary" style={{color:'#fff'}} align="center">
               Terms & conditions
             </Typography>
-          </Link>
+          </Link> */}
           <Typography
             variant="body1"
             color="textPrimary"
@@ -378,6 +378,7 @@ export default function ButtonAppBar() {
                 <Link to="/login" className={classes.links}>
                   <Button
                     color="inherit"
+                    style={{marginRight:40}}
                     className={[classes.buttonFontSize, classes.loginButton]}
                   >
                     Login
@@ -435,11 +436,11 @@ export default function ButtonAppBar() {
           </Typography>
           <div className={classes.search}>
             {/* search icons */}
-            <SearchItems
+            {/* <SearchItems
               handleOpenSearch={handleClickOpenSearch}
               openSearch={openSearch}
               closeSearch={handleCloseSearch}
-            />
+            /> */}
           </div>
           <div className={classes.sectionDesktop}>
             <Grid
@@ -448,7 +449,7 @@ export default function ButtonAppBar() {
               align="left"
               spacing={1}
               alignItems="left"
-              style={{ marginRight: 0 }}
+              style={{ marginRight: 40 }}
             >
               {/* <Grid item>
                 <Link to="/request" className={classes.links}>
