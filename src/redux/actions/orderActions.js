@@ -13,7 +13,8 @@ export const getAllOrders = () => dispatch => {
 	axios
 		.get(`${REACT_APP_BACKEND}/order`)
 		.then(res => {
-			dispatch({ type: GET_ALL_ORDERS_SUCCESS, payload: res.data.allorders });
+
+		if(res.data.allorders !=null || res.data.allorders.length !==0 )	dispatch({ type: GET_ALL_ORDERS_SUCCESS, payload: res.data.allorders.filter((item)=>item.itemType ==='car') });
 		})
 		.catch(err => {
 			dispatch({

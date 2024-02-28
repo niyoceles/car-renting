@@ -70,7 +70,8 @@ const Cart = (props) => {
     phoneNumber: '',
     address: '',
     location: '',
-    appUrl: process.env.REACT_APP_FRONTEND
+    appUrl: process.env.REACT_APP_FRONTEND,
+    itemType:'car'
   });
 
   const dispatch = useDispatch();

@@ -127,11 +127,11 @@ const ViewOrder = props => {
 											<ListItemText primary={moment(myprofroma.deadline).format('MMM Do YY, h:mm a')} />
 										</ListItem>
 										<Divider variant='inset' component='li' />
-{/* 
+
 										<ListItem>
 											<ListItemText primary='Status' />
 											<ListItemText primary={myprofroma.status} />
-										</ListItem> */}
+										</ListItem> 
 										<Divider variant='inset' component='li' />
 										<Divider />
 										<ListItem>
