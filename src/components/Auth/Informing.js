@@ -50,7 +50,7 @@ export default function Informing() {
 							color:'white'
 						}}
 					>
-						<b>Rent Car</b>
+						<b>Car Rental</b>
 					</Typography>
 					<br />
 					<br />

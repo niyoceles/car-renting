@@ -294,7 +294,7 @@ const Footer = () => {
 							Contact us
 						</Typography>
 					</Link>
-					{/* <Link
+					<Link
 						display='block'
 						variant='body2'
 						href='/about-us'
@@ -309,7 +309,7 @@ const Footer = () => {
 						>
 							About us
 						</Typography>
-					</Link> */}
+					</Link>
 					{/* <Link
 						display='block'
 						variant='body2'

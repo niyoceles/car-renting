@@ -281,14 +281,14 @@ export default function ButtonAppBar() {
               Home
             </Typography>
           </Link>
-          <Typography
+          {/* <Typography
             variant="body1"
             color="textPrimary"
             align="center"
             style={{ paddingLeft: 5, paddingRight: 5,color:'#fff' }}
           >
             |
-          </Typography>{' '}
+          </Typography>{' '} */}
           {/* <Link to="/why-choose-us" className={classes.links}>
             <Typography variant="body2" color="textSecondary" style={{color:'#fff'}} align="center">
             Why Choose Us
@@ -307,14 +307,14 @@ export default function ButtonAppBar() {
               Help
             </Typography>
           </Link>
-          <Typography
+          {/* <Typography
             variant="body1"
             color="textPrimary"
             align="center"
             style={{ paddingLeft: 5, paddingRight: 5, color:'#fff' }}
           >
             |
-          </Typography>{' '}
+          </Typography>{' '} */}
 
           {/* <Link to="/terms-and-conditions" className={classes.links}>
             <Typography variant="body2" color="textSecondary" style={{color:'#fff'}} align="center">
