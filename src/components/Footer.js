@@ -235,8 +235,7 @@ const Footer = () => {
 							className={classes.logo}
 						/>
 						<br/>
-						Bookme.rw is a business name and e-commerce platform owned by
-						 we are an experienced company in car renting and hiring car
+						
 					</Typography>
 				</Grid>
 				<Grid item xs={6} sm={3}>
