@@ -168,7 +168,7 @@ const AddItem = () => {
 								onChange={handleChange}
 								fullWidth
 							>
-								<MenuItem value={'carhire'}>carhire</MenuItem>
+								{/* <MenuItem value={'carhire'}>carhire</MenuItem> */}
 								<MenuItem value={'selfdriving'}>selfdriving</MenuItem>
 								<MenuItem value={'carhiredriver'}>carhiredriver</MenuItem>
 							</Select>
